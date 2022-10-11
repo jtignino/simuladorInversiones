@@ -11,18 +11,18 @@ function login() {
     let bloqueo = false;
     do {
         let usuarioIngresado = prompt("Ingresá tu usuario:", "admin");
-        if (usuarioIngresado == null) {
+        if (usuarioIngresado === null) {
             ingresar = null;
-        } else if (usuarioIngresado != usuario) {
+        } else if (usuarioIngresado !== usuario) {
             alert("El usuario no existe.");
             ingresar = false;
         } else {
             for (let i = 2; i >= 0; i--) {
                 let contraseniaIngresada = prompt("Ingresá tu contraseña:", "admin123");
-                if (contraseniaIngresada == null){
+                if (contraseniaIngresada === null){
                     ingresar = null;
                     break;
-                } else if (contraseniaIngresada == contrasenia) {
+                } else if (contraseniaIngresada === contrasenia) {
                     alert("¡Bienvenido/a " + usuario + "!");
                     ingresar = true;
                     break;
@@ -52,7 +52,7 @@ function login() {
 // Función menú
 function menu(capital, tasa1, tasa2, tasa3) {
     let opcion = prompt("Elegí el tipo de inversión:\n\n1- Plazo Fijo. \n2- FCI Mercadopago. \n3- Caución Bursátil. \n\nPresioná ESC o Cancelar para salir.");
-    while (opcion != null) {
+    while (opcion !== null) {
         switch (opcion) {
             case "1":
                 plazoFijo(capital, tasa1);
@@ -131,7 +131,7 @@ function caucion(capital, tasa) {
 
 // Programa principal
 let ingreso = login();
-if (ingreso == null) {
+if (ingreso === null) {
     alert("Sesión cerrada.");
 } else if(ingreso) {
     let aux = false;
