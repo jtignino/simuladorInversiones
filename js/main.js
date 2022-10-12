@@ -11,10 +11,10 @@ const historial = [];
 // Creo la clase constructora de objetos que luego se guardarán en el historial:
 class Inversion {
     constructor(tipoInversion, interesGanado, plazo, tna, fecha, capitalFinal) {
-        this.tipoInversion = tipoInversion;
+        this.tipoInversion = tipoInversion.toUpperCase();
         this.interesGanado = parseFloat(interesGanado);
         this.plazo = parseInt(plazo);
-        this.tna = parseInt(tna);
+        this.tna = parseFloat(tna);
         this.fecha = fecha;
         this.capitalFinal = parseFloat(capitalFinal);
     }
@@ -29,12 +29,21 @@ function cargarArray(arr, valor) {
 
 // Función para calcular el interés total:
 function calcularTotal(arr) {
-    const total = arr.reduce((acc, el)=>{
+    const total = arr.reduce((acc, el) => {
         return acc + el.interesGanado
     }, 0);
     return total;
 }
 // fin de la función para calcular el interés total
+
+// Función para filtrar en el historial por tipo de inversión:
+function filtrar(arr, filtro) {
+    const filtrado = arr.filter((el) => {
+        return el.tipoInversion.includes(filtro);
+    })
+    return filtrado;
+}
+// fin de la función para filtrar
 
 // Función para iniciar sesión:
 function login() {
@@ -82,7 +91,7 @@ function login() {
 
 // Función menú
 function menu(capital, tasa1, tasa2, tasa3) {
-    let opcion = prompt("Elegí el tipo de inversión:\n\n1- Plazo Fijo. \n2- FCI Mercadopago. \n3- Caución Bursátil. \n\nPresioná ESC o Cancelar para salir.");
+    let opcion = prompt("Elegí el tipo de inversión o buscar en el historial:\n\n1- Plazo Fijo. \n2- FCI Mercadopago. \n3- Caución Bursátil. \n4- Buscar en el historial. \n\nPresioná ESC o Cancelar para salir.");
     while (opcion !== null) {
         switch (opcion) {
             case "1":
@@ -94,11 +103,21 @@ function menu(capital, tasa1, tasa2, tasa3) {
             case "3":
                 caucion(capital, tasa3);
                 break;
+            case "4":
+                let buscar = prompt("Buscar por: ")
+                let arrayFiltrado = filtrar(historial, buscar.toUpperCase());
+                if (arrayFiltrado.length === 0) {
+                    alert("No hay coincidencias.");
+                } else {
+                    console.log(arrayFiltrado);
+                    alert("Visualizar las coincidencias en la consola.");
+                }
+                break;
             default:
                 alert("La opción elegida no es válida.");
                 break;
         }
-        opcion = prompt("Elegí el tipo de inversión:\n\n1- Plazo Fijo. \n2- FCI Mercadopago. \n3- Caución. \nPresioná ESC o Cancelar para salir.");
+        opcion = prompt("Elegí el tipo de inversión o buscar en el historial:\n\n1- Plazo Fijo. \n2- FCI Mercadopago. \n3- Caución Bursátil. \n4- Buscar en el historial. \n\nPresioná ESC o Cancelar para salir.");
     }
 }
 // fin de la función menú
