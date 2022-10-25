@@ -26,44 +26,57 @@
     <div class="d-flex flex-column justify-content-center align-items-center box">
         <h1 class="mb-4">Simulador de Inversiones</h1>
         <div class="bg-light box2 rounded-3">
-            <div class="row d-flex flex-column align-items-center py-3">
-                <div class="col-10 mb-3">
-                    <label for="formGroupExampleInput" class="form-label col-form-label col-form-label-lg text-dark">Saldo actual</label>
-                    <div>
-                        <p class="text-dark fs-4">$100000</p>
+            <div class="row d-flex h-100">
+                <div class="col-6 h-100">
+                    <div class="row d-flex flex-column align-items-center py-3">
+                        <div class="col-10 mb-3">
+                            <p class="text-dark fs-3">Saldo actual</p>
+                            <p class="text-success fs-3">$100000</p>
+                        </div>
                     </div>
+                    
+                    <form id="formulario">
+                        <div class="row d-flex flex-column align-items-center py-3">
+                            <div class="col-10 mb-3">
+                                <label for="montoAInvertir" class="form-label col-form-label col-form-label-lg text-dark">Monto a invertir en Pesos ($)</label>
+                                <input type="number" class="form-control form-control-lg" id="montoAInvertir"
+                                    placeholder="Monto mínimo $1000" required>
+                            </div>
+                    
+                            <div class="col-10 mb-3">
+                                <label for="tipoInversion"
+                                    class="form-label col-form-label col-form-label-lg text-dark">Tipo de inversión
+                                </label>
+                                <select id="tipoInversion" class="form-select form-select-lg" aria-label="Default select example">
+                                    <option selected>Elegí una opción</option>
+                                    <option value="1">Plazo fijo</option>
+                                    <option value="2">Mercadopago</option>
+                                    <option value="3">Caución bursátil</option>
+                                </select>
+                            </div>
+                    
+                            <div class="col-10 mb-3">
+                                <label for="plazoDeInversion" class="form-label col-form-label col-form-label-lg text-dark">Ingresá el plazo en días</label>
+                                <input type="number" class="form-control form-control-lg" id="plazoDeInversion"
+                                    placeholder="" required>
+                            </div>
+                        
+                            <div class="col-10 mt-4">
+                                <button type="submit" class="btn btn-primary fs-4">Calcular</button>
+                            </div>
+                    
+                            <div id="msjError" class="col-10"></div>
+                        </div>
+                    </form>
                 </div>
 
-            </div>
-
-            <div class="row d-flex flex-column align-items-center py-3">
-                <div class="col-10 mb-3">
-                    <label for="montoAInvertir" class="form-label col-form-label col-form-label-lg text-dark">Monto a invertir en Pesos ($)</label>
-                    <input type="text" class="form-control form-control-lg" id="montoAInvertir"
-                        placeholder="Monto mínimo $1000" required>
-                </div>
-                <div class="col-10 mb-3">
-                    <label for="formGroupExampleInput2"
-                        class="form-label col-form-label col-form-label-lg text-dark">Tipo de inversión
-                    </label>
-                    <select class="form-select form-select-lg" aria-label="Default select example">
-                        <option selected>Elegí una opción</option>
-                        <option value="1">Plazo fijo</option>
-                        <option value="2">Mercadopago</option>
-                        <option value="3">Caución bursátil</option>
-                    </select>
-                    <!-- <input type="" class="form-control form-control-lg" id="formGroupExampleInput2"
-                        placeholder="Otro input placeholder" required> -->
-                </div>
-                <div class="col-10 mb-3">
-                    <label for="plazoDeInversion" class="form-label col-form-label col-form-label-lg text-dark">Ingresá el plazo en días</label>
-                    <input type="text" class="form-control form-control-lg" id="plazoDeInversion"
-                        placeholder="" required>
-                </div>
-
-                
-                <div class="col-10 mt-4">
-                    <button type="submit" class="btn btn-primary fs-4">Calcular</button>
+                <div class="col-6 h-100">
+                    <div class="row d-flex flex-column align-items-center py-3">
+                        <div class="col-10 mb-3">
+                            <p class="text-dark fs-3">Resultados</p>
+                            <div id="contenedorResultados"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -72,16 +85,13 @@
 
     </div>
 
-
-
-
-
     <!-- BS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
     <!-- JS -->
-    <script defer src="./js/app.js"></script>
+    <!-- <script src="../js/app.js"></script> -->
+    <script defer src="../js/prueba.js"></script>
     <!-- <script defer src="./js/main.js"></script> -->
 </body>
 

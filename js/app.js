@@ -204,22 +204,23 @@ if (ingreso === null) {
     alert("Sesión cerrada.");
 } else if (ingreso) {
     let aux = false;
-    
-    let capitalAInvertir = prompt("Tu saldo actual es de $" + saldo + " \n\nIngresá el capital a invertir sin símbolos (monto mínimo $1.000.-):");
-    console.log(capitalAInvertir);
-    while (!aux && capitalAInvertir != null) {
-        capitalAInvertir = parseInt(capitalAInvertir);
-        if (isNaN(capitalAInvertir)) {
-            alert("El campo no puede estar vacío ni contener símbolos.");
-            capitalAInvertir = prompt("Tu saldo actual es de $" + saldo + " \n\nIngresá el capital a invertir sin símbolos (monto mínimo $1.000.-):");
-        } else if (capitalAInvertir > saldo || capitalAInvertir < 1000) {
-            alert("Saldo insuficiente.");
-            capitalAInvertir = prompt("Tu saldo actual es de $" + saldo + " \n\nIngresá el capital a invertir sin símbolos (monto mínimo $1.000.-):");
-        } else {
-            menu(capitalAInvertir, tasaPlazoFijo, tasaMercadopago, tasaCaucion);
-            aux = true;
-        }
-    }
+    const montoAInvertir = document.getElementById("montoAInvertir");
+    console.log(montoAInvertir.value);
+    // let capitalAInvertir = prompt("Tu saldo actual es de $" + saldo + " \n\nIngresá el capital a invertir sin símbolos (monto mínimo $1.000.-):");
+    // console.log(capitalAInvertir);
+    // while (!aux && capitalAInvertir != null) {
+    //     capitalAInvertir = parseInt(capitalAInvertir);
+    //     if (isNaN(capitalAInvertir)) {
+    //         alert("El campo no puede estar vacío ni contener símbolos.");
+    //         capitalAInvertir = prompt("Tu saldo actual es de $" + saldo + " \n\nIngresá el capital a invertir sin símbolos (monto mínimo $1.000.-):");
+    //     } else if (capitalAInvertir > saldo || capitalAInvertir < 1000) {
+    //         alert("Saldo insuficiente.");
+    //         capitalAInvertir = prompt("Tu saldo actual es de $" + saldo + " \n\nIngresá el capital a invertir sin símbolos (monto mínimo $1.000.-):");
+    //     } else {
+    //         menu(capitalAInvertir, tasaPlazoFijo, tasaMercadopago, tasaCaucion);
+    //         aux = true;
+    //     }
+    // }
 } else {
     alert("Para desbloquear su cuenta por favor contacte al soporte.");
 }
