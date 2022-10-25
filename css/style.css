@@ -16,11 +16,14 @@ body {
 }
 
 .box{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    min-height: 100vh;    
     background-color: #3E7CB1;    
     padding: 1.6rem;
+}
+
+.box2{
+    width: 75vw;
+    height: 75vh;
 }
 
 .titulo{
