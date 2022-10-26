@@ -1,8 +1,9 @@
+// ---------- VARIABLES GLOBALES ---------- //
 let saldoActual = 1000;
-
-// Creo un array vacío:
+let contador = 0;
 const historial = [];
 
+// ---------- CONSTRUCTOR Y FUNCIONES ---------- //
 // Creo la clase constructora de objetos que luego se guardarán en el historial:
 class Inversion {
     constructor(tipoInversion, interesGanado, plazo, tna, fecha, capitalFinal) {
@@ -15,6 +16,30 @@ class Inversion {
     }
 }
 // fin de la clase constructora
+
+// Función que trae el saldo guardado en el Storage. Si no existe la clave entonces la crea y la pinta en el HTML:
+function saldoEnStorage(){
+    let saldoEnStorage = JSON.parse(localStorage.getItem("saldo"));
+    if (saldoEnStorage) {
+        saldoActual = saldoEnStorage;
+    } else {
+        localStorage.setItem("saldo", saldoActual);
+    }
+    const saldo = document.getElementById("saldo");
+    saldo.innerText = `$${saldoActual.toFixed(2)} `;
+}
+// fin de la función
+
+// Función que genera ID's con un contador que se guarda en Local Storage, se utilizan para generar las claves de los objetos que se almacenan en el storage a medida que se simulan inversiones:
+function IdEnStorage() {
+    let contadorEnLS = JSON.parse(localStorage.getItem("contador"));
+    if (contadorEnLS) {
+        contador = contadorEnLS;
+    } else {
+        localStorage.setItem("contador", contador);
+    }
+}
+// fin de la función
 
 // Función para actualizar un array genérico:
 function cargarArray(arr, valor) {
@@ -32,7 +57,7 @@ function plazoFijo(capital, plazo) {
     const nuevaInversion = new Inversion("Plazo Fijo", interesesGanados.toFixed(2), plazo, tasaPlazoFijo, new Date().toLocaleString(), capitalTotal.toFixed(2));
     const nuevaInversionJSON = JSON.stringify(nuevaInversion);
 
-    contador = contador + 1;
+    contador++;
     localStorage.setItem("contador", contador);
     localStorage.setItem(contador, nuevaInversionJSON);
     
@@ -43,22 +68,23 @@ function plazoFijo(capital, plazo) {
     let div = document.createElement("div");
     div.innerHTML = `
                     <p class="text-dark fs-4">Tipo de inversión:</p>
-                    <p class="text-dark fs-4 fw-bold ">Plazo fijo</p>
+                    <p class="text-dark fs-4 fw-bold font-monospace">Plazo fijo</p>
                     <p class="text-dark fs-4">Capital invertido: </p>
-                    <p class="text-dark fs-4 fw-bold ">$ ${capital} </p> 
+                    <p class="text-dark fs-4 fw-bold font-monospace">$ ${capital} </p> 
                     <p class="text-dark fs-4">Capital final: </p>
-                    <p class="text-dark fs-4 fw-bold ">$ ${historial[historial.length - 1].capitalFinal} </p>  
+                    <p class="text-dark fs-4 fw-bold font-monospace">$ ${historial[historial.length - 1].capitalFinal} </p>  
                     <p class="text-dark fs-4">Intereses ganados: </p>
-                    <p class="text-dark fs-4 fw-bold ">$ ${historial[historial.length - 1].interesGanado} </p>  
+                    <p class="text-dark fs-4 fw-bold font-monospace">$ ${historial[historial.length - 1].interesGanado} </p>  
                     <p class="text-dark fs-4">Plazo: </p>
-                    <p class="text-dark fs-4 fw-bold "> ${historial[historial.length - 1].plazo} día(s)</p>  
+                    <p class="text-dark fs-4 fw-bold font-monospace"> ${historial[historial.length - 1].plazo} día(s)</p>  
                     <p class="text-dark fs-4">Tasa Nominal Anual: </p>
-                    <p class="text-dark fs-4 fw-bold "> ${historial[historial.length - 1].tna}%</p> 
+                    <p class="text-dark fs-4 fw-bold font-monospace"> ${historial[historial.length - 1].tna}%</p> 
                     `;
     contenedorResultados.appendChild(div);
 
     const saldo = document.getElementById("saldo");
     saldo.innerText = `$${saldoActual.toFixed(2)} `;
+    localStorage.setItem("saldo", saldoActual.toFixed(2));
 }
 // fin de la función Plazo Fijo
 
@@ -73,7 +99,7 @@ function mercadopago(capital, plazo) {
     const nuevaInversion = new Inversion("Mercadopago", interesesGanados.toFixed(2), plazo, tasaMercadopago, new Date().toLocaleString(), capitalTotal.toFixed(2));
     const nuevaInversionJSON = JSON.stringify(nuevaInversion);
     
-    contador = contador + 1;
+    contador++;
     localStorage.setItem("contador", contador);
     localStorage.setItem(contador, nuevaInversionJSON);
 
@@ -84,22 +110,23 @@ function mercadopago(capital, plazo) {
     let div = document.createElement("div");
     div.innerHTML = `
                     <p class="text-dark fs-4">Tipo de inversión:</p>
-                    <p class="text-dark fs-4 fw-bold ">Mercadopago</p>
+                    <p class="text-dark fs-4 fw-bold font-monospace">Mercadopago</p>
                     <p class="text-dark fs-4">Capital invertido: </p>
-                    <p class="text-dark fs-4 fw-bold ">$ ${capital} </p> 
+                    <p class="text-dark fs-4 fw-bold font-monospace">$ ${capital} </p> 
                     <p class="text-dark fs-4">Capital final: </p>
-                    <p class="text-dark fs-4 fw-bold ">$ ${historial[historial.length - 1].capitalFinal} </p>  
+                    <p class="text-dark fs-4 fw-bold font-monospace">$ ${historial[historial.length - 1].capitalFinal} </p>  
                     <p class="text-dark fs-4">Intereses ganados: </p>
-                    <p class="text-dark fs-4 fw-bold ">$ ${historial[historial.length - 1].interesGanado} </p>  
+                    <p class="text-dark fs-4 fw-bold font-monospace">$ ${historial[historial.length - 1].interesGanado} </p>  
                     <p class="text-dark fs-4">Plazo: </p>
-                    <p class="text-dark fs-4 fw-bold "> ${historial[historial.length - 1].plazo} día(s)</p>  
+                    <p class="text-dark fs-4 fw-bold font-monospace"> ${historial[historial.length - 1].plazo} día(s)</p>  
                     <p class="text-dark fs-4">Tasa Nominal Anual: </p>
-                    <p class="text-dark fs-4 fw-bold "> ${historial[historial.length - 1].tna}%</p> 
+                    <p class="text-dark fs-4 fw-bold font-monospace"> ${historial[historial.length - 1].tna}%</p> 
                     `;
     contenedorResultados.appendChild(div);
 
     const saldo = document.getElementById("saldo");
     saldo.innerText = `$${saldoActual.toFixed(2)} `;
+    localStorage.setItem("saldo", saldoActual.toFixed(2));
 }
 // fin de la función Mercadopago
 
@@ -111,10 +138,10 @@ function caucion(capital, plazo) {
     let capitalTotal = capital + interesesGanados;
     saldoActual += interesesGanados;  
 
-    const nuevaInversion = new Inversion("Mercadopago", interesesGanados.toFixed(2), plazo, tasaCaucion, new Date().toLocaleString(), capitalTotal.toFixed(2));
+    const nuevaInversion = new Inversion("Caución", interesesGanados.toFixed(2), plazo, tasaCaucion, new Date().toLocaleString(), capitalTotal.toFixed(2));
     const nuevaInversionJSON = JSON.stringify(nuevaInversion);
 
-    contador = contador + 1;
+    contador++;
     localStorage.setItem("contador", contador);
     localStorage.setItem(contador, nuevaInversionJSON);
 
@@ -125,33 +152,30 @@ function caucion(capital, plazo) {
     let div = document.createElement("div");
     div.innerHTML = `
                     <p class="text-dark fs-4">Tipo de inversión:</p>
-                    <p class="text-dark fs-4 fw-bold ">Caución</p>
+                    <p class="text-dark fs-4 fw-bold font-monospace">Caución</p>
                     <p class="text-dark fs-4">Capital invertido: </p>
-                    <p class="text-dark fs-4 fw-bold ">$ ${capital} </p> 
+                    <p class="text-dark fs-4 fw-bold font-monospace">$ ${capital} </p> 
                     <p class="text-dark fs-4">Capital final: </p>
-                    <p class="text-dark fs-4 fw-bold ">$ ${historial[historial.length - 1].capitalFinal} </p>  
+                    <p class="text-dark fs-4 fw-bold font-monospace">$ ${historial[historial.length - 1].capitalFinal} </p>  
                     <p class="text-dark fs-4">Intereses ganados: </p>
-                    <p class="text-dark fs-4 fw-bold ">$ ${historial[historial.length - 1].interesGanado} </p>  
+                    <p class="text-dark fs-4 fw-bold font-monospace">$ ${historial[historial.length - 1].interesGanado} </p>  
                     <p class="text-dark fs-4">Plazo: </p>
-                    <p class="text-dark fs-4 fw-bold "> ${historial[historial.length - 1].plazo} día(s)</p>  
+                    <p class="text-dark fs-4 fw-bold font-monospace"> ${historial[historial.length - 1].plazo} día(s)</p>  
                     <p class="text-dark fs-4">Tasa Nominal Anual: </p>
-                    <p class="text-dark fs-4 fw-bold "> ${historial[historial.length - 1].tna}%</p> 
+                    <p class="text-dark fs-4 fw-bold font-monospace"> ${historial[historial.length - 1].tna}%</p> 
                     `;
     contenedorResultados.appendChild(div);
 
     const saldo = document.getElementById("saldo");
     saldo.innerText = `$${saldoActual.toFixed(2)} `;
+    localStorage.setItem("saldo", saldoActual.toFixed(2));
 }
 // fin de la función Caución
 
-// Utilizo un contador con persistencia para generar ID's, uso esos ID's para generar la Clave de los objetos guardados en el Storage
-let contador = 0;
-let contadorEnLS = JSON.parse(localStorage.getItem("contador"));
-if (contadorEnLS) {
-    contador = contadorEnLS;
-} else {
-    localStorage.setItem("contador", contador);
-}
+
+// ---------- PROGRAMA PRINCIPAL ---------- //
+saldoEnStorage();
+IdEnStorage();
 
 const formulario = document.getElementById("formulario");
 formulario.addEventListener("submit", (e) => {
@@ -181,6 +205,5 @@ formulario.addEventListener("submit", (e) => {
             parrafo.className = "text-danger fs-5 mt-4";
             msjError.appendChild(parrafo);
         break;
-    }
-   
+    } 
 })
