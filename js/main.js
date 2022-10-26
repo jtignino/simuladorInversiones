@@ -1,9 +1,4 @@
-let usuario = "admin";
-let contrasenia = "admin123";
-let saldo = 100000;
-let tasaPlazoFijo = 75.1;
-let tasaMercadopago = 54.2;
-let tasaCaucion = 50.3;
+let saldoActual = 1000;
 
 // Creo un array vacío:
 const historial = [];
@@ -11,7 +6,7 @@ const historial = [];
 // Creo la clase constructora de objetos que luego se guardarán en el historial:
 class Inversion {
     constructor(tipoInversion, interesGanado, plazo, tna, fecha, capitalFinal) {
-        this.tipoInversion = tipoInversion.toUpperCase();
+        this.tipoInversion = tipoInversion;
         this.interesGanado = parseFloat(interesGanado);
         this.plazo = parseInt(plazo);
         this.tna = parseFloat(tna);
@@ -27,198 +22,165 @@ function cargarArray(arr, valor) {
 }
 // fin de la función para actualizar el historial
 
-// Función para calcular el interés total:
-function calcularTotal(arr) {
-    const total = arr.reduce((acc, el) => {
-        return acc + el.interesGanado
-    }, 0);
-    return total;
-}
-// fin de la función para calcular el interés total
-
-// Función para filtrar en el historial por tipo de inversión:
-function filtrar(arr, filtro) {
-    const filtrado = arr.filter((el) => {
-        return el.tipoInversion.includes(filtro);
-    })
-    return filtrado;
-}
-// fin de la función para filtrar
-
-// Función para iniciar sesión:
-function login() {
-    let ingresar = false;
-    let bloqueo = false;
-    do {
-        let usuarioIngresado = prompt("Ingresá tu usuario:", "admin");
-        if (usuarioIngresado === null) {
-            ingresar = null;
-        } else if (usuarioIngresado !== usuario) {
-            alert("El usuario no existe.");
-            ingresar = false;
-        } else {
-            for (let i = 2; i >= 0; i--) {
-                let contraseniaIngresada = prompt("Ingresá tu contraseña:", "admin123");
-                if (contraseniaIngresada === null) {
-                    ingresar = null;
-                    break;
-                } else if (contraseniaIngresada === contrasenia) {
-                    alert("¡Bienvenido/a " + usuario + "!");
-                    ingresar = true;
-                    break;
-                } else {
-                    switch (i) {
-                        case 0:
-                            alert("Contraseña incorrecta. Usuario bloqueado.");
-                            bloqueo = true;
-                            break;
-                        case 1:
-                            alert("Contraseña incorrecta. Te queda " + i + " intento.");
-                            break;
-                        case 2:
-                            alert("Contraseña incorrecta. Te quedan " + i + " intentos.");
-                        default:
-                            break;
-                    }
-                }
-            }
-        }
-    } while (ingresar != true && ingresar != null && bloqueo != true);
-
-    return ingresar;
-}
-// fin de la función para iniciar sesión
-
-// Función menú
-function menu(capital, tasa1, tasa2, tasa3) {
-    let opcion = prompt("Elegí el tipo de inversión o buscar en el historial:\n\n1- Plazo Fijo. \n2- FCI Mercadopago. \n3- Caución Bursátil. \n4- Buscar en el historial. \n\nPresioná ESC o Cancelar para salir.");
-    while (opcion !== null) {
-        switch (opcion) {
-            case "1":
-                plazoFijo(capital, tasa1);
-                break;
-            case "2":
-                mercadopago(capital, tasa2);
-                break;
-            case "3":
-                caucion(capital, tasa3);
-                break;
-            case "4":
-                let buscar = prompt("Buscar por: ")
-                let arrayFiltrado = filtrar(historial, buscar.toUpperCase());
-                if (arrayFiltrado.length === 0) {
-                    alert("No hay coincidencias.");
-                } else {
-                    console.log(arrayFiltrado);
-                    alert("Visualizar las coincidencias en la consola.");
-                }
-                break;
-            default:
-                alert("La opción elegida no es válida.");
-                break;
-        }
-        opcion = prompt("Elegí el tipo de inversión o buscar en el historial:\n\n1- Plazo Fijo. \n2- FCI Mercadopago. \n3- Caución Bursátil. \n4- Buscar en el historial. \n\nPresioná ESC o Cancelar para salir.");
-    }
-}
-// fin de la función menú
-
 // Función Plazo Fijo:
-function plazoFijo(capital, tasa) {
-    let aux = false;
-    let plazo = prompt("PLAZO FIJO \n\nIngresá el plazo en días (mínimo 30 días - máximo 365 días):");
-    while (!aux && plazo != null) {
-        plazo = parseInt(plazo);
-        if (plazo >= 30 && plazo <= 365) {
-            let interesesGanados = (tasa / 100 / 365 * plazo) * capital;
-            capital += interesesGanados;
-            alert("INVERSIÓN EN PLAZO FIJO \n\nCapital final: $" + capital.toFixed(2) + "\nIntereses ganados: $" + interesesGanados.toFixed(2) + "\nPlazo: " + plazo + " día(s)\nTasa Nominal Anual: " + tasa + "%");
-            const nuevaInversion = new Inversion("Plazo Fijo", interesesGanados.toFixed(2), plazo, tasa, new Date().toLocaleString(), capital.toFixed(2));
-            cargarArray(historial, nuevaInversion);
-            console.log(historial);
-            let interesTotal = calcularTotal(historial);
-            alert("El interés total es: $" + interesTotal.toFixed(2));
-            console.log("El interés total es: " + interesTotal.toFixed(2));
-            aux = true;
-        } else {
-            alert("El plazo no es válido.");
-            plazo = prompt("PLAZO FIJO \n\nIngresá el plazo en días (mínimo 30 días - máximo 365 días):");
-        }
-    }
+function plazoFijo(capital, plazo) {
+    let tasaPlazoFijo = 75.1;
+      
+    let interesesGanados = (tasaPlazoFijo / 100 / 365 * plazo) * capital;
+    let capitalTotal = capital + interesesGanados;
+    saldoActual += interesesGanados;  
+    const nuevaInversion = new Inversion("Plazo Fijo", interesesGanados.toFixed(2), plazo, tasaPlazoFijo, new Date().toLocaleString(), capitalTotal.toFixed(2));
+    const nuevaInversionJSON = JSON.stringify(nuevaInversion);
+
+    contador = contador + 1;
+    localStorage.setItem("contador", contador);
+    localStorage.setItem(contador, nuevaInversionJSON);
+    
+    cargarArray(historial, nuevaInversion); 
+
+    const contenedorResultados = document.getElementById("contenedorResultados");
+    contenedorResultados.innerHTML = "";
+    let div = document.createElement("div");
+    div.innerHTML = `
+                    <p class="text-dark fs-4">Tipo de inversión:</p>
+                    <p class="text-dark fs-4 fw-bold ">Plazo fijo</p>
+                    <p class="text-dark fs-4">Capital invertido: </p>
+                    <p class="text-dark fs-4 fw-bold ">$ ${capital} </p> 
+                    <p class="text-dark fs-4">Capital final: </p>
+                    <p class="text-dark fs-4 fw-bold ">$ ${historial[historial.length - 1].capitalFinal} </p>  
+                    <p class="text-dark fs-4">Intereses ganados: </p>
+                    <p class="text-dark fs-4 fw-bold ">$ ${historial[historial.length - 1].interesGanado} </p>  
+                    <p class="text-dark fs-4">Plazo: </p>
+                    <p class="text-dark fs-4 fw-bold "> ${historial[historial.length - 1].plazo} día(s)</p>  
+                    <p class="text-dark fs-4">Tasa Nominal Anual: </p>
+                    <p class="text-dark fs-4 fw-bold "> ${historial[historial.length - 1].tna}%</p> 
+                    `;
+    contenedorResultados.appendChild(div);
+
+    const saldo = document.getElementById("saldo");
+    saldo.innerText = `$${saldoActual.toFixed(2)} `;
 }
 // fin de la función Plazo Fijo
 
 // Función Mercadopago:
-function mercadopago(capital, tasa) {
-    let aux = false;
-    let plazo = prompt("MERCADOPAGO \n\nIngresá el plazo en días (mínimo 5 días - máximo 365 días):");
-    while (!aux && plazo != null) {
-        plazo = parseInt(plazo);
-        if (plazo >= 5 && plazo <= 365) {
-            let interesesGanados = (tasa / 100 / 365 * plazo) * capital;
-            capital += interesesGanados;
-            alert("INVERSIÓN EN MERCADOPAGO \n\nCapital final: $" + capital.toFixed(2) + "\nIntereses ganados: $" + interesesGanados.toFixed(2) + "\nPlazo: " + plazo + " día(s)\nTasa Nominal Anual: " + tasa + "%");
-            const nuevaInversion = new Inversion("Mercadopago", interesesGanados.toFixed(2), plazo, tasa, new Date().toLocaleString(), capital.toFixed(2));
-            cargarArray(historial, nuevaInversion);
-            console.log(historial);
-            let interesTotal = calcularTotal(historial);
-            alert("El interés total es: $" + interesTotal.toFixed(2));
-            console.log("El interés total es: " + interesTotal.toFixed(2));
-            aux = true;
-        } else {
-            alert("El plazo no es válido.");
-            plazo = prompt("MERCADOPAGO \n\nIngresá el plazo en días (mínimo 5 días - máximo 365 días):");
-        }
-    }
+function mercadopago(capital, plazo) {
+    let tasaMercadopago = 58.2;
+      
+    let interesesGanados = (tasaMercadopago / 100 / 365 * plazo) * capital;
+    let capitalTotal = capital + interesesGanados;
+    saldoActual += interesesGanados;  
+
+    const nuevaInversion = new Inversion("Mercadopago", interesesGanados.toFixed(2), plazo, tasaMercadopago, new Date().toLocaleString(), capitalTotal.toFixed(2));
+    const nuevaInversionJSON = JSON.stringify(nuevaInversion);
+    
+    contador = contador + 1;
+    localStorage.setItem("contador", contador);
+    localStorage.setItem(contador, nuevaInversionJSON);
+
+    cargarArray(historial, nuevaInversion);
+
+    const contenedorResultados = document.getElementById("contenedorResultados");
+    contenedorResultados.innerHTML = "";
+    let div = document.createElement("div");
+    div.innerHTML = `
+                    <p class="text-dark fs-4">Tipo de inversión:</p>
+                    <p class="text-dark fs-4 fw-bold ">Mercadopago</p>
+                    <p class="text-dark fs-4">Capital invertido: </p>
+                    <p class="text-dark fs-4 fw-bold ">$ ${capital} </p> 
+                    <p class="text-dark fs-4">Capital final: </p>
+                    <p class="text-dark fs-4 fw-bold ">$ ${historial[historial.length - 1].capitalFinal} </p>  
+                    <p class="text-dark fs-4">Intereses ganados: </p>
+                    <p class="text-dark fs-4 fw-bold ">$ ${historial[historial.length - 1].interesGanado} </p>  
+                    <p class="text-dark fs-4">Plazo: </p>
+                    <p class="text-dark fs-4 fw-bold "> ${historial[historial.length - 1].plazo} día(s)</p>  
+                    <p class="text-dark fs-4">Tasa Nominal Anual: </p>
+                    <p class="text-dark fs-4 fw-bold "> ${historial[historial.length - 1].tna}%</p> 
+                    `;
+    contenedorResultados.appendChild(div);
+
+    const saldo = document.getElementById("saldo");
+    saldo.innerText = `$${saldoActual.toFixed(2)} `;
 }
 // fin de la función Mercadopago
 
 // Función Caución:
-function caucion(capital, tasa) {
-    let aux = false;
-    let plazo = prompt("CAUCIÓN BURSÁTIL \n\nIngresá el plazo en días (mínimo 1 día - máximo 120 días):");
-    while (!aux && plazo != null) {
-        plazo = parseInt(plazo);
-        if (plazo >= 1 && plazo <= 120) {
-            let interesesGanados = (tasa / 100 / 365 * plazo) * capital;
-            capital += interesesGanados;
-            alert("INVERSIÓN EN CAUCIÓN BURSÁTIL \n\nCapital final: $" + capital.toFixed(2) + "\nIntereses ganados: $" + interesesGanados.toFixed(2) + "\nPlazo: " + plazo + " día(s)\nTasa Nominal Anual: " + tasa + "%");
-            const nuevaInversion = new Inversion("Caución", interesesGanados.toFixed(2), plazo, tasa, new Date().toLocaleString(), capital.toFixed(2));
-            cargarArray(historial, nuevaInversion);
-            console.log(historial);
-            let interesTotal = calcularTotal(historial);
-            alert("El interés total es: $" + interesTotal.toFixed(2));
-            console.log("El interés total es: " + interesTotal.toFixed(2));
-            aux = true;
-        } else {
-            alert("El plazo no es válido.");
-            plazo = prompt("CAUCIÓN BURSÁTIL \n\nIngresá el plazo en días (mínimo 1 día - máximo 120 días):");
-        }
-    }
-}
-//fin de la función Caución
+function caucion(capital, plazo) {
+    let tasaCaucion = 50.5;
+      
+    let interesesGanados = (tasaCaucion / 100 / 365 * plazo) * capital;
+    let capitalTotal = capital + interesesGanados;
+    saldoActual += interesesGanados;  
 
-// Programa principal
-let ingreso = login();
-if (ingreso === null) {
-    alert("Sesión cerrada.");
-} else if (ingreso) {
-    let aux = false;
-    let capitalAInvertir = prompt("Tu saldo actual es de $" + saldo + " \n\nIngresá el capital a invertir sin símbolos (monto mínimo $1.000.-):");
-    console.log(capitalAInvertir);
-    while (!aux && capitalAInvertir != null) {
-        capitalAInvertir = parseInt(capitalAInvertir);
-        if (isNaN(capitalAInvertir)) {
-            alert("El campo no puede estar vacío ni contener símbolos.");
-            capitalAInvertir = prompt("Tu saldo actual es de $" + saldo + " \n\nIngresá el capital a invertir sin símbolos (monto mínimo $1.000.-):");
-        } else if (capitalAInvertir > saldo || capitalAInvertir < 1000) {
-            alert("Saldo insuficiente.");
-            capitalAInvertir = prompt("Tu saldo actual es de $" + saldo + " \n\nIngresá el capital a invertir sin símbolos (monto mínimo $1.000.-):");
-        } else {
-            menu(capitalAInvertir, tasaPlazoFijo, tasaMercadopago, tasaCaucion);
-            aux = true;
-        }
-    }
+    const nuevaInversion = new Inversion("Mercadopago", interesesGanados.toFixed(2), plazo, tasaCaucion, new Date().toLocaleString(), capitalTotal.toFixed(2));
+    const nuevaInversionJSON = JSON.stringify(nuevaInversion);
+
+    contador = contador + 1;
+    localStorage.setItem("contador", contador);
+    localStorage.setItem(contador, nuevaInversionJSON);
+
+    cargarArray(historial, nuevaInversion);
+
+    const contenedorResultados = document.getElementById("contenedorResultados");
+    contenedorResultados.innerHTML = "";
+    let div = document.createElement("div");
+    div.innerHTML = `
+                    <p class="text-dark fs-4">Tipo de inversión:</p>
+                    <p class="text-dark fs-4 fw-bold ">Caución</p>
+                    <p class="text-dark fs-4">Capital invertido: </p>
+                    <p class="text-dark fs-4 fw-bold ">$ ${capital} </p> 
+                    <p class="text-dark fs-4">Capital final: </p>
+                    <p class="text-dark fs-4 fw-bold ">$ ${historial[historial.length - 1].capitalFinal} </p>  
+                    <p class="text-dark fs-4">Intereses ganados: </p>
+                    <p class="text-dark fs-4 fw-bold ">$ ${historial[historial.length - 1].interesGanado} </p>  
+                    <p class="text-dark fs-4">Plazo: </p>
+                    <p class="text-dark fs-4 fw-bold "> ${historial[historial.length - 1].plazo} día(s)</p>  
+                    <p class="text-dark fs-4">Tasa Nominal Anual: </p>
+                    <p class="text-dark fs-4 fw-bold "> ${historial[historial.length - 1].tna}%</p> 
+                    `;
+    contenedorResultados.appendChild(div);
+
+    const saldo = document.getElementById("saldo");
+    saldo.innerText = `$${saldoActual.toFixed(2)} `;
+}
+// fin de la función Caución
+
+// Utilizo un contador con persistencia para generar ID's, uso esos ID's para generar la Clave de los objetos guardados en el Storage
+let contador = 0;
+let contadorEnLS = JSON.parse(localStorage.getItem("contador"));
+if (contadorEnLS) {
+    contador = contadorEnLS;
 } else {
-    alert("Para desbloquear su cuenta por favor contacte al soporte.");
+    localStorage.setItem("contador", contador);
 }
 
+const formulario = document.getElementById("formulario");
+formulario.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const msjError = document.getElementById("msjError");
+    msjError.innerHTML = "";
+
+    const montoAInvertir = parseFloat(document.getElementById("montoAInvertir").value);
+    const tipoInversion = parseInt(document.getElementById("tipoInversion").value);
+    const plazoDeInversion = parseInt(document.getElementById("plazoDeInversion").value);
+
+    formulario.reset();
+
+    switch (tipoInversion) {
+        case 1:
+            plazoFijo(montoAInvertir, plazoDeInversion);
+            break;
+        case 2:
+            mercadopago(montoAInvertir, plazoDeInversion);
+            break;
+        case 3:
+            caucion(montoAInvertir, plazoDeInversion);
+            break;
+        default:
+            const parrafo = document.createElement("p");
+            parrafo.innerText = "La opción elegida no es válida. Vuelva a intentar.";
+            parrafo.className = "text-danger fs-5 mt-4";
+            msjError.appendChild(parrafo);
+        break;
+    }
+   
+})
