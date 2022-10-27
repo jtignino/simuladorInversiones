@@ -30,14 +30,14 @@
                             <div class="col-10 mb-3">
                                 <label for="montoAInvertir" class="form-label col-form-label col-form-label-lg text-dark">Monto a invertir en Pesos ($)</label>
                                 <input type="number" class="form-control form-control-lg" id="montoAInvertir"
-                                    placeholder="" required>
+                                    placeholder="Mínimo $1" required>
                             </div>
                     
                             <div class="col-10 mb-3">
                                 <label for="tipoInversion"
                                     class="form-label col-form-label col-form-label-lg text-dark">Tipo de inversión
                                 </label>
-                                <select id="tipoInversion" class="form-select form-select-lg" aria-label="Default select example">
+                                <select id="tipoInversion" class="form-select form-select-lg">
                                     <option selected>Elegí una opción</option>
                                     <option value="1">Plazo fijo</option>
                                     <option value="2">Mercadopago</option>
@@ -48,14 +48,16 @@
                             <div class="col-10 mb-3">
                                 <label for="plazoDeInversion" class="form-label col-form-label col-form-label-lg text-dark">Ingresá el plazo en días</label>
                                 <input type="number" class="form-control form-control-lg" id="plazoDeInversion"
-                                    placeholder="" required>
+                                    placeholder="Mín. 1 día - máx. 365 días" required>
                             </div>
                         
                             <div class="col-10 mt-4">
                                 <button type="submit" class="btn btn-primary fs-4">Calcular</button>
                             </div>
-                    
+                            
+                            <div id="errorDeMonto" class="col-10"></div>
                             <div id="msjError" class="col-10"></div>
+                            <div id="errorDePlazo" class="col-10"></div>
                         </div>
                     </form>
                 </div>

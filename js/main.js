@@ -18,7 +18,7 @@ class Inversion {
 // fin de la clase constructora
 
 // Función que trae el saldo guardado en el Storage. Si no existe la clave entonces la crea y la pinta en el HTML:
-function saldoEnStorage(){
+function saldoEnStorage() {
     let saldoEnStorage = JSON.parse(localStorage.getItem("saldo"));
     if (saldoEnStorage) {
         saldoActual = saldoEnStorage;
@@ -50,35 +50,35 @@ function cargarArray(arr, valor) {
 // Función Plazo Fijo:
 function plazoFijo(capital, plazo) {
     let tasaPlazoFijo = 75.1;
-      
+
     let interesesGanados = (tasaPlazoFijo / 100 / 365 * plazo) * capital;
     let capitalTotal = capital + interesesGanados;
-    saldoActual += interesesGanados;  
+    saldoActual += interesesGanados;
     const nuevaInversion = new Inversion("Plazo Fijo", interesesGanados.toFixed(2), plazo, tasaPlazoFijo, new Date().toLocaleString(), capitalTotal.toFixed(2));
     const nuevaInversionJSON = JSON.stringify(nuevaInversion);
 
     contador++;
     localStorage.setItem("contador", contador);
     localStorage.setItem(contador, nuevaInversionJSON);
-    
-    cargarArray(historial, nuevaInversion); 
+
+    cargarArray(historial, nuevaInversion);
 
     const contenedorResultados = document.getElementById("contenedorResultados");
     contenedorResultados.innerHTML = "";
     let div = document.createElement("div");
     div.innerHTML = `
                     <p class="text-dark fs-4">Tipo de inversión:</p>
-                    <p class="text-dark fs-4 fw-bold font-monospace">Plazo fijo</p>
+                    <p class="text-success fs-4 fw-bold font-monospace">Plazo fijo</p>
                     <p class="text-dark fs-4">Capital invertido: </p>
-                    <p class="text-dark fs-4 fw-bold font-monospace">$ ${capital} </p> 
+                    <p class="text-success fs-4 fw-bold font-monospace">$ ${capital} </p> 
                     <p class="text-dark fs-4">Capital final: </p>
-                    <p class="text-dark fs-4 fw-bold font-monospace">$ ${historial[historial.length - 1].capitalFinal} </p>  
+                    <p class="text-success fs-4 fw-bold font-monospace">$ ${historial[historial.length - 1].capitalFinal} </p>  
                     <p class="text-dark fs-4">Intereses ganados: </p>
-                    <p class="text-dark fs-4 fw-bold font-monospace">$ ${historial[historial.length - 1].interesGanado} </p>  
+                    <p class="text-success fs-4 fw-bold font-monospace">$ ${historial[historial.length - 1].interesGanado} </p>  
                     <p class="text-dark fs-4">Plazo: </p>
-                    <p class="text-dark fs-4 fw-bold font-monospace"> ${historial[historial.length - 1].plazo} día(s)</p>  
+                    <p class="text-success fs-4 fw-bold font-monospace"> ${historial[historial.length - 1].plazo} día(s)</p>  
                     <p class="text-dark fs-4">Tasa Nominal Anual: </p>
-                    <p class="text-dark fs-4 fw-bold font-monospace"> ${historial[historial.length - 1].tna}%</p> 
+                    <p class="text-success fs-4 fw-bold font-monospace"> ${historial[historial.length - 1].tna}%</p> 
                     `;
     contenedorResultados.appendChild(div);
 
@@ -91,14 +91,14 @@ function plazoFijo(capital, plazo) {
 // Función Mercadopago:
 function mercadopago(capital, plazo) {
     let tasaMercadopago = 58.2;
-      
+
     let interesesGanados = (tasaMercadopago / 100 / 365 * plazo) * capital;
     let capitalTotal = capital + interesesGanados;
-    saldoActual += interesesGanados;  
+    saldoActual += interesesGanados;
 
     const nuevaInversion = new Inversion("Mercadopago", interesesGanados.toFixed(2), plazo, tasaMercadopago, new Date().toLocaleString(), capitalTotal.toFixed(2));
     const nuevaInversionJSON = JSON.stringify(nuevaInversion);
-    
+
     contador++;
     localStorage.setItem("contador", contador);
     localStorage.setItem(contador, nuevaInversionJSON);
@@ -110,17 +110,17 @@ function mercadopago(capital, plazo) {
     let div = document.createElement("div");
     div.innerHTML = `
                     <p class="text-dark fs-4">Tipo de inversión:</p>
-                    <p class="text-dark fs-4 fw-bold font-monospace">Mercadopago</p>
+                    <p class="text-success fs-4 fw-bold font-monospace">Mercadopago</p>
                     <p class="text-dark fs-4">Capital invertido: </p>
-                    <p class="text-dark fs-4 fw-bold font-monospace">$ ${capital} </p> 
+                    <p class="text-success fs-4 fw-bold font-monospace">$ ${capital} </p> 
                     <p class="text-dark fs-4">Capital final: </p>
-                    <p class="text-dark fs-4 fw-bold font-monospace">$ ${historial[historial.length - 1].capitalFinal} </p>  
+                    <p class="text-success fs-4 fw-bold font-monospace">$ ${historial[historial.length - 1].capitalFinal} </p>  
                     <p class="text-dark fs-4">Intereses ganados: </p>
-                    <p class="text-dark fs-4 fw-bold font-monospace">$ ${historial[historial.length - 1].interesGanado} </p>  
+                    <p class="text-success fs-4 fw-bold font-monospace">$ ${historial[historial.length - 1].interesGanado} </p>  
                     <p class="text-dark fs-4">Plazo: </p>
-                    <p class="text-dark fs-4 fw-bold font-monospace"> ${historial[historial.length - 1].plazo} día(s)</p>  
+                    <p class="text-success fs-4 fw-bold font-monospace"> ${historial[historial.length - 1].plazo} día(s)</p>  
                     <p class="text-dark fs-4">Tasa Nominal Anual: </p>
-                    <p class="text-dark fs-4 fw-bold font-monospace"> ${historial[historial.length - 1].tna}%</p> 
+                    <p class="text-success fs-4 fw-bold font-monospace"> ${historial[historial.length - 1].tna}%</p> 
                     `;
     contenedorResultados.appendChild(div);
 
@@ -133,10 +133,10 @@ function mercadopago(capital, plazo) {
 // Función Caución:
 function caucion(capital, plazo) {
     let tasaCaucion = 50.5;
-      
+
     let interesesGanados = (tasaCaucion / 100 / 365 * plazo) * capital;
     let capitalTotal = capital + interesesGanados;
-    saldoActual += interesesGanados;  
+    saldoActual += interesesGanados;
 
     const nuevaInversion = new Inversion("Caución", interesesGanados.toFixed(2), plazo, tasaCaucion, new Date().toLocaleString(), capitalTotal.toFixed(2));
     const nuevaInversionJSON = JSON.stringify(nuevaInversion);
@@ -152,17 +152,17 @@ function caucion(capital, plazo) {
     let div = document.createElement("div");
     div.innerHTML = `
                     <p class="text-dark fs-4">Tipo de inversión:</p>
-                    <p class="text-dark fs-4 fw-bold font-monospace">Caución</p>
+                    <p class="text-success fs-4 fw-bold font-monospace">Caución</p>
                     <p class="text-dark fs-4">Capital invertido: </p>
-                    <p class="text-dark fs-4 fw-bold font-monospace">$ ${capital} </p> 
+                    <p class="text-success fs-4 fw-bold font-monospace">$ ${capital} </p> 
                     <p class="text-dark fs-4">Capital final: </p>
-                    <p class="text-dark fs-4 fw-bold font-monospace">$ ${historial[historial.length - 1].capitalFinal} </p>  
+                    <p class="text-success fs-4 fw-bold font-monospace">$ ${historial[historial.length - 1].capitalFinal} </p>  
                     <p class="text-dark fs-4">Intereses ganados: </p>
-                    <p class="text-dark fs-4 fw-bold font-monospace">$ ${historial[historial.length - 1].interesGanado} </p>  
+                    <p class="text-success fs-4 fw-bold font-monospace">$ ${historial[historial.length - 1].interesGanado} </p>  
                     <p class="text-dark fs-4">Plazo: </p>
-                    <p class="text-dark fs-4 fw-bold font-monospace"> ${historial[historial.length - 1].plazo} día(s)</p>  
+                    <p class="text-success fs-4 fw-bold font-monospace"> ${historial[historial.length - 1].plazo} día(s)</p>  
                     <p class="text-dark fs-4">Tasa Nominal Anual: </p>
-                    <p class="text-dark fs-4 fw-bold font-monospace"> ${historial[historial.length - 1].tna}%</p> 
+                    <p class="text-success fs-4 fw-bold font-monospace"> ${historial[historial.length - 1].tna}%</p> 
                     `;
     contenedorResultados.appendChild(div);
 
@@ -180,30 +180,50 @@ IdEnStorage();
 const formulario = document.getElementById("formulario");
 formulario.addEventListener("submit", (e) => {
     e.preventDefault();
+    
     const msjError = document.getElementById("msjError");
     msjError.innerHTML = "";
+
+    const errorDeMonto = document.getElementById("errorDeMonto");
+    errorDeMonto.innerHTML = "";
+
+    const errorDePlazo = document.getElementById("errorDePlazo");
+    errorDePlazo.innerHTML = "";
 
     const montoAInvertir = parseFloat(document.getElementById("montoAInvertir").value);
     const tipoInversion = parseInt(document.getElementById("tipoInversion").value);
     const plazoDeInversion = parseInt(document.getElementById("plazoDeInversion").value);
 
-    formulario.reset();
+    if (montoAInvertir === 0 || montoAInvertir > saldoActual.toFixed(2)) {
+        const error1 = document.createElement("p");
+        error1.innerText = `El monto a invertir no debe ser $0 ni mayor al saldo actual ($${saldoActual.toFixed(2)})`;
+        error1.className = "text-danger fs-5 mt-4";
+        errorDeMonto.appendChild(error1);
+    } else if (plazoDeInversion === 0 || plazoDeInversion > 365) {
+        const error2 = document.createElement("p");
+        error2.innerText = "Error en el plazo de inversión. Ingrese un plazo válido.";
+        error2.className = "text-danger fs-5 mt-4";
+        errorDePlazo.appendChild(error2);
+    } else {
+        switch (tipoInversion) {
+            case 1:
+                plazoFijo(montoAInvertir, plazoDeInversion);
+                break;
+            case 2:
+                mercadopago(montoAInvertir, plazoDeInversion);
+                break;
+            case 3:
+                caucion(montoAInvertir, plazoDeInversion);
+                break;
+            default:
+                const parrafo = document.createElement("p");
+                parrafo.innerText = "La opción elegida no es válida. Vuelva a intentar.";
+                parrafo.className = "text-danger fs-5 mt-4";
+                msjError.appendChild(parrafo);
+                break;
+        }
+    }
 
-    switch (tipoInversion) {
-        case 1:
-            plazoFijo(montoAInvertir, plazoDeInversion);
-            break;
-        case 2:
-            mercadopago(montoAInvertir, plazoDeInversion);
-            break;
-        case 3:
-            caucion(montoAInvertir, plazoDeInversion);
-            break;
-        default:
-            const parrafo = document.createElement("p");
-            parrafo.innerText = "La opción elegida no es válida. Vuelva a intentar.";
-            parrafo.className = "text-danger fs-5 mt-4";
-            msjError.appendChild(parrafo);
-        break;
-    } 
+    formulario.reset();
 })
+
