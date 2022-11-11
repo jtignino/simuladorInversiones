@@ -1,0 +1,14 @@
+[
+    {
+       "nombre":"plazo fijo",
+       "tna":75.1
+    },
+    {
+       "nombre":"mercadopago",
+       "tna":58.2
+    },
+    {
+       "nombre":"caución",
+       "tna":50.5
+    }
+ ]
