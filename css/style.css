@@ -19,7 +19,8 @@ body {
 
 .box2{
     width: 70vw;
-    height: 80vh;
+    height: 85vh;
+    border-radius: 1rem;
 }
 
 .bordeBottom{
@@ -27,6 +28,9 @@ body {
 }
 
 .contenedorH{
-    max-height: 84%;
+    max-height: 90%;
 }
 
+.colorTexto{
+    color: rgba(0, 0, 0, 0.8);
+}
