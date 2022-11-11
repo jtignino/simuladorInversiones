@@ -18,12 +18,15 @@ body {
 }
 
 .box2{
-    width: 75vw;
-    height: 75vh;
+    width: 70vw;
+    height: 80vh;
 }
 
 .bordeBottom{
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
+.contenedorH{
+    max-height: 84%;
+}
 

@@ -14,10 +14,10 @@
 
 <body>
     <div class="d-flex flex-column justify-content-center align-items-center box">
-        <h1 class="mb-4 fs-3">Simulador de Inversiones</h1>
-        <div class="bg-light box2 rounded-3 overflow-auto">
-            <div class="row d-flex mw-100 h-100 py-3">
-                <div class="col-6 h-100">
+        <h1 class="mb-3 fs-3">Simulador de Inversiones</h1>
+        <div class="bg-light box2 rounded-3 row d-flex py-3">
+            <!-- <div class="row d-flex mw-100 h-100 py-3"> -->
+                <div class="col-6 mh-100">
                     <div class="row d-flex flex-column align-items-center">
                         <div class="col-10 mb-1">
                             <p class="text-dark fs-5 bordeBottom">Saldo actual</p>
@@ -59,15 +59,16 @@
                     </form>
                 </div>
 
-                <div class="col-6 h-100">
-                    <div class="row d-flex flex-column align-items-center">
-                        <div class="col-10 mb-1">
+                <div class="col-6 mh-100">
+                    <div class="row d-flex flex-column align-items-center h-100">
+                        <div class="col-10 d-flex flex-column mb-1 h-100">
                             <p class="text-dark fs-5 bordeBottom">Resultados</p>
-                            <div id="contenedorResultados"></div>
+                            <div id="contenedorResultados" class="overflow-auto contenedorH"></div>
                         </div>
+                        
                     </div>
                 </div>
-            </div>
+            <!-- </div> -->
 
 
         </div>

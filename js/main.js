@@ -178,6 +178,7 @@ function mercadopago(capital, plazo, arr) {
                     <p class="text-dark fs-6">Tasa Nominal Anual: </p>
                     <p class="text-success fs-6 font-monospace"> ${historial[historial.length - 1].tna}%</p> 
                     `;
+    div.classList.add("overflow-auto", "mh-100");
     contenedorResultados.appendChild(div);
 
     const saldo = document.getElementById("saldo");
