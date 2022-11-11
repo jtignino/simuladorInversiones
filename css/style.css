@@ -5,10 +5,6 @@
     padding: 0;
 }
 
-html {
-    font-size: 62.5%;
-}
-
 body {
     font-style: normal;
     font-family: 'Poppins', sans-serif;
@@ -18,7 +14,7 @@ body {
 .box{
     min-height: 100vh;    
     background-color: #3E7CB1;    
-    padding: 1.6rem;
+    padding: 1rem;
 }
 
 .box2{
@@ -26,20 +22,4 @@ body {
     height: 75vh;
 }
 
-.titulo{
-    font-size: 2.4rem;
-    font-weight: 500;
-    letter-spacing: .1rem;
-}
-
-.titulo span{
-    font-weight: 700;
-}
-
-.subtitulo{
-    text-transform: uppercase;
-    font-size: 1.8rem;
-    font-weight: 500;
-    letter-spacing: .18rem;
-}
 
