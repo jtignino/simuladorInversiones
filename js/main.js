@@ -2,7 +2,7 @@
 let saldoActual = 10000;
 let contador = 0;
 const historial = [];
-const url = "../data/datos.json";
+const url = "data/datos.json";
 
 // ---------- LIBRERÍA LUXON ---------- //
 const DateTime = luxon.DateTime;
