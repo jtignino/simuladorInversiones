@@ -5,22 +5,28 @@
     padding: 0;
 }
 
+/* html{
+    font-size: 87%;
+} */
+
 body {
     font-style: normal;
     font-family: 'Poppins', sans-serif;
     color: white;
 }
 
-.box{
-    min-height: 100vh;    
-    background-color: #3E7CB1;    
+.contenedorPrincipal{
+    min-height: 85vh;    
+    /* background-color: #3E7CB1; */
+    background: linear-gradient(180deg, rgba(0,142,233,1) 0%, rgba(3,108,200,1) 100%);    
     padding: 1rem;
 }
 
-.box2{
+.contenedorSecundario{
     width: 70vw;
-    height: 85vh;
+    height: 70vh;
     border-radius: 1rem;
+    /* z-index: 100; */
 }
 
 .bordeBottom{
@@ -33,4 +39,9 @@ body {
 
 .colorTexto{
     color: rgba(0, 0, 0, 0.8);
+}
+
+.divIcon{
+    width: 28px;
+    height: 28px;
 }
