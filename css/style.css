@@ -5,9 +5,9 @@
     padding: 0;
 }
 
-/* html{
+html{
     font-size: 87%;
-} */
+}
 
 body {
     font-style: normal;
@@ -26,6 +26,7 @@ body {
     width: 70vw;
     height: 70vh;
     border-radius: 1rem;
+    overflow-y: hidden;
     /* z-index: 100; */
 }
 
@@ -44,4 +45,9 @@ body {
 .divIcon{
     width: 28px;
     height: 28px;
+}
+
+.formulario{
+    overflow: hidden auto;
+    max-height: 80%;
 }

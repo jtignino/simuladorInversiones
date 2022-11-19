@@ -16,8 +16,8 @@
 <body>
     <div class="d-flex flex-column justify-content-center align-items-center contenedorPrincipal">
         <h1 class="mb-3 fs-4">Simulador de Inversiones</h1>
-        <div class=" bg-light contenedorSecundario row d-flex py-3">
-            <div class="col-6 mh-100">
+        <div class=" bg-light contenedorSecundario row d-flex py-3 px-4">
+            <div class="col-8 mh-100">
                 <div class="row d-flex flex-column align-items-center">
                     <div class="col-11 mb-1">
                         <p class="text-dark bordeBottom">Saldo actual</p>
@@ -25,10 +25,10 @@
                     </div>
                 </div>
 
-                <form id="formulario">
-                    <div class="row d-flex flex-column align-items-center">
-                        <div class="col-11 mb-2">
-                            <label for="montoAInvertir" class="form-label col-form-label text-dark pb-0">Monto a invertir en
+                <form id="formulario" class="formulario">
+                    <div class="row d-flex flex-column-- justify-content-between align-items-center">
+                        <div class="col-6 mb-2">
+                            <label for="montoAInvertir" class="form-label col-form-label text-dark pb-0 fs-6">Monto a invertir en
                                 pesos</label>
 
                             <div class="input-group input-group-sm--">
@@ -44,8 +44,8 @@
                             </div>
                         </div>
 
-                        <div class="col-11 mb-2">
-                            <label for="tipoInversion" class="form-label col-form-label text-dark">Tipo de inversión
+                        <div class="col-6 mb-2">
+                            <label for="tipoInversion" class="form-label col-form-label text-dark fs-6">Tipo de inversión
                             </label>
                             <select id="tipoInversion" class="form-select form-select-sm ">
                                 <option selected class="text-black-50">Elegí una opción</option>
@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="col-11 mb-4">
-                            <label for="plazoDeInversion" class="form-label col-form-label text-dark">Ingresá el plazo
+                            <label for="plazoDeInversion" class="form-label col-form-label text-dark fs-6">Ingresá el plazo
                                 en días</label>
                             <div class="input-group input-group-sm">
                                 <div class="input-group-text border-end-0 bg-transparent fs-4 text-black-50 divIcon">
@@ -76,15 +76,15 @@
 
                         <div class="col-11 mb-0">
                             <div class="form-control-sm ">
-                                <div class="form-check form-switch">
+                                <div class="form-check form-switch d-flex align-items-baseline">
                                     <input class="form-check-input me-3" type="checkbox" role="switch" id="switchCheck">
-                                    <label class="form-check-label colorTexto" for="switchCheck">Habilitar interés compuesto</label>
+                                    <label class="form-check-label colorTexto fs-6" for="switchCheck">Habilitar interés compuesto</label>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-11 mb-1">
-                            <label for="cantRepeticiones" class="form-label col-form-label text-dark">Cantidad de repeticiones</label>
+                            <label for="cantRepeticiones" class="form-label col-form-label text-dark fs-6">Cantidad de repeticiones</label>
                             <div class="input-group input-group-sm">
                                 <div class="input-group-text border-end-0 bg-transparent fs-4 text-black-50 divIcon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
@@ -96,14 +96,14 @@
                             </div>
                         </div>
 
-                        <div class="col-11 mt-4 d-grid">
-                            <button type="submit" class="btn btn-primary rounded-pill">Calcular inversión</button>
+                        <div class="col-5 my-4 d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg rounded-pill fs-6">Calcular inversión</button>
                         </div>
                     </div>
                 </form>
             </div>
 
-            <div class="col-6 mh-100">
+            <div class="col-4 mh-100">
                 <div class="row d-flex flex-column align-items-center h-100">
                     <div class="col-11 d-flex flex-column mb-1 h-100">
                         <p class="text-dark bordeBottom">Resultados</p>
