@@ -16,17 +16,17 @@
 <body>
     <div class="d-flex flex-column justify-content-center align-items-center contenedorPrincipal">
         <h1 class="mb-3 fs-4">Simulador de Inversiones</h1>
-        <div class=" bg-light contenedorSecundario row d-flex py-3 px-4">
-            <div class="col-8 mh-100">
+        <div class="bg-light contenedorSecundario row py-3 px-4">
+            <div class="col-8 mh-100 pe-5">
                 <div class="row d-flex flex-column align-items-center">
-                    <div class="col-11 mb-1">
+                    <div class="col-12 mb-1">
                         <p class="text-dark bordeBottom">Saldo actual</p>
                         <p class="text-success mb-2" id="saldo"></p>
                     </div>
                 </div>
 
-                <form id="formulario" class="formulario">
-                    <div class="row d-flex flex-column-- justify-content-between align-items-center">
+                <form id="formulario" class="formulario row align-content-between flex-wrap">
+                    <div class="row">
                         <div class="col-6 mb-2">
                             <label for="montoAInvertir" class="form-label col-form-label text-dark pb-0 fs-6">Monto a invertir en
                                 pesos</label>
@@ -45,21 +45,10 @@
                         </div>
 
                         <div class="col-6 mb-2">
-                            <label for="tipoInversion" class="form-label col-form-label text-dark fs-6">Tipo de inversión
-                            </label>
-                            <select id="tipoInversion" class="form-select form-select-sm ">
-                                <option selected class="text-black-50">Elegí una opción</option>
-                                <option value="1" class="text-black-50">Plazo fijo (Banco Nación)</option>
-                                <option value="2" class="text-black-50">Mercadopago</option>
-                                <option value="3" class="text-black-50">Caución bursátil</option>
-                            </select>
-                        </div>
-
-                        <div class="col-11 mb-4">
-                            <label for="plazoDeInversion" class="form-label col-form-label text-dark fs-6">Ingresá el plazo
+                            <label for="plazoDeInversion" class="form-label col-form-label text-dark fs-6 pb-0">Ingresá el plazo
                                 en días</label>
-                            <div class="input-group input-group-sm">
-                                <div class="input-group-text border-end-0 bg-transparent fs-4 text-black-50 divIcon">
+                            <div class="input-group input-group-sm--">
+                                <div class="input-group-text border-end-0 bg-transparent text-black-50 divIcon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-clock-history" viewBox="0 0 16 16">
                                         <path
@@ -73,41 +62,53 @@
                                     placeholder="Mín. 1 día - máx. 365 días" required>
                             </div>
                         </div>
+                        <div class="col-6 mb-2">
+                            <label for="tipoInversion" class="form-label col-form-label text-dark fs-6 pb-1">Tipo de inversión
+                            </label>
+                            <select id="tipoInversion" class="form-select form-select-sm">
+                                <option selected class="text-black-50">Elegí una opción</option>
+                                <option value="1" class="text-black-50">Plazo fijo (Banco Nación)</option>
+                                <option value="2" class="text-black-50">Mercadopago</option>
+                                <option value="3" class="text-black-50">Caución bursátil</option>
+                            </select>
+                        </div>
 
-                        <div class="col-11 mb-0">
-                            <div class="form-control-sm ">
-                                <div class="form-check form-switch d-flex align-items-baseline">
-                                    <input class="form-check-input me-3" type="checkbox" role="switch" id="switchCheck">
-                                    <label class="form-check-label colorTexto fs-6" for="switchCheck">Habilitar interés compuesto</label>
+
+                        <div class="row ms-0 mt-2 align-items-end ">
+                            <div class="col-6 mt-3 mb-0 ps-0">
+                                <label for="cantRepeticiones" class="form-label col-form-label text-dark fs-6 p-0">Cantidad de repeticiones</label>
+                                <div class="input-group input-group-sm-- pe-0 me-0">
+                                    <div class="input-group-text border-end-0 bg-transparent text-black-50 divIcon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                                            <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                                            <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+                                          </svg>
+                                    </div>
+                                    <input type="number" class="form-control form-control-sm" id="cantRepeticiones" value="1" disabled>
+                                </div>
+                            </div>
+                            <div class="col-6 mt-3 mb-0 pe-0">
+                                <div class="form-control-sm">
+                                    <div class="form-check form-switch d-flex align-items-baseline">
+                                        <input class="form-check-input me-3" type="checkbox" role="switch" id="switchCheck">
+                                        <label class="form-check-label texto" for="switchCheck">Habilitar interés compuesto</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-11 mb-1">
-                            <label for="cantRepeticiones" class="form-label col-form-label text-dark fs-6">Cantidad de repeticiones</label>
-                            <div class="input-group input-group-sm">
-                                <div class="input-group-text border-end-0 bg-transparent fs-4 text-black-50 divIcon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
-                                        <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
-                                        <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
-                                      </svg>
-                                </div>
-                                <input type="number" class="form-control form-control-sm" id="cantRepeticiones" value="1" disabled>
-                            </div>
-                        </div>
-
-                        <div class="col-5 my-4 d-grid">
-                            <button type="submit" class="btn btn-primary btn-lg rounded-pill fs-6">Calcular inversión</button>
-                        </div>
+                    </div>
+                    <div class="col-6 my-3 d-grid mx-auto">
+                        <button type="submit" class="btn btn-primary btn-lg rounded-pill fs-6">Calcular inversión</button>
                     </div>
                 </form>
             </div>
 
             <div class="col-4 mh-100">
                 <div class="row d-flex flex-column align-items-center h-100">
-                    <div class="col-11 d-flex flex-column mb-1 h-100">
+                    <div class="col-12 d-flex flex-column mb-1 h-100">
                         <p class="text-dark bordeBottom">Resultados</p>
-                        <div id="contenedorResultados" class="overflow-auto contenedorH"></div>
+                        <div id="contenedorResultados" class="overflow-auto contenedorH scrollMod"></div>
                     </div>
 
                 </div>
@@ -116,10 +117,10 @@
     </div>
 
     <footer class="position-relative w-100">
-        <div style="height: 15vh; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M0.00,49.98 C150.00,150.00 263.82,-20.22 502.54,56.73 L500.00,0.00 L0.00,0.00 Z" style="stroke: none; fill: #036cc8;"></path></svg>
+        <div style="height: 10vh; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M0.00,49.98 C150.00,150.00 263.82,-20.22 502.54,56.73 L500.00,0.00 L0.00,0.00 Z" style="stroke: none; fill: #036cc8;"></path></svg>
         </div>
         <div class="position-absolute bottom-0 w-100">
-            <p class="w-100 text-center text-black-50">Powered by <a href="https://github.com/jtignino" target="_blank" class="text-decoration-none text-black">Jonathan Tignino</a></p>
+            <p class="w-100 text-center text-black-50 mb-1 parrafo">Desarrollado por <a href="https://github.com/jtignino" target="_blank" class="text-decoration-none text-black">Jonathan Tignino</a></p>
         </div>
     </footer>
 
