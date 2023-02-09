@@ -65,3 +65,13 @@ body {
 .parrafo{
     font-size: 0.9rem;
 }
+
+.wIcon{
+    position: fixed;
+    bottom: 10px;
+    left: auto;
+    right: 10px;
+    /* color: white; */
+    /* background: green; */
+    z-index: 100;
+}
